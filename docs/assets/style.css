@@ -1,23 +1,48 @@
 /* =========================================================================
    The Invisible Gem — thesis companion site
    A critical-edition layout: margin rail + reading column + turning pages.
-   Palette: ink & parchment, keyed to Father Bonfa's four hour-colours.
+
+   Type: self-hosted (no third-party font CDN). The display face is a serif
+   on purpose — this is a companion to a 1673 manuscript treatise on gnomonics;
+   Cormorant Garamond echoes the old-style printing of the sources reproduced
+   throughout. Not a "creative brief = serif" reflex; the heritage/publication
+   context is the documented case where serif is the right call.
+
+   Palette: this is NOT a decorative warm-craft scheme. The ground is the
+   fresco's plaster; --gilt is the colour of Bonfa's gilt Latin inscriptions
+   and of his Babylonian hour lines; --rubric / --azure / --sun are not free
+   accents but the literal colour code the fresco uses (red = Italian hours,
+   blue = celestial houses, ochre = solar declination). One accent (--gilt);
+   the rest appear only in the line-colour legend and figure keys.
    ========================================================================= */
 
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/cormorant-garamond-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/cormorant-garamond-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/cormorant-garamond-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/spectral-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/spectral-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/spectral-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/spectral-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/spectral-600-normal.woff2) format('woff2');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-400-normal.woff2) format('woff2');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-500-normal.woff2) format('woff2');}
+
 :root {
-  /* --- light: parchment --- */
-  --ground:        #efe9db;
-  --ground-2:      #e7e0cd;   /* sunk panels, rails */
-  --paper:         #f7f3e8;   /* raised cards / figures */
-  --ink:           #201d18;   /* body text — Bonfa's "French hours" black */
-  --ink-soft:      #4a4438;
-  --stone:         #7a7263;   /* captions, side-notes — ochre-biased grey */
-  --line:          #c9bfa4;
-  --gilt:          #a8791f;   /* accent — the gilt inscriptions / Babylonian yellow */
+  /* --- light: fresco plaster, stepped a touch cooler than a cream default --- */
+  --ground:        #eae4d4;
+  --ground-2:      #e1dac6;   /* sunk panels, rails */
+  --paper:         #f4efe2;   /* raised cards / figures */
+  --ink:           #1b1915;   /* body text — Bonfa's "French hours" black */
+  --ink-soft:      #46413a;
+  --stone:         #726b60;   /* captions, side-notes */
+  --line:          #c6bca2;
+  --gilt:          #a8791f;   /* the one accent — gilt inscriptions / Babylonian hour lines */
   --gilt-bright:   #caa03d;
-  --rubric:        #9c382c;   /* Roman red — Italian hours, emphasis */
-  --azure:         #33506f;   /* celestial houses blue */
-  --sun:           #d98a2b;   /* the moving light-spot / declination orange */
+  --rubric:        #9c382c;   /* fresco colour code: Italian / Roman hours */
+  --azure:         #33506f;   /* fresco colour code: celestial houses */
+  --sun:           #d98a2b;   /* fresco colour code: solar declination / the light-spot */
   --shadow:        0 1px 2px rgba(32,29,24,.06), 0 10px 34px -18px rgba(32,29,24,.34);
   --focus:         #1f5673;
 

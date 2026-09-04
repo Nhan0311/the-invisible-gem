@@ -49,13 +49,12 @@ def toc_html(current):
 def shell(slug, title, kicker, body, head_extra="", body_class=""):
     here = title
     nav_i = next(i for i, n in enumerate(NAV) if n[0] == slug)
+    # fonts are self-hosted via @font-face in style.css — no third-party font CDN
     fonts = (
-        '<link rel="preconnect" href="https://fonts.googleapis.com">'
-        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-        'family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&'
-        'family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&'
-        'family=IBM+Plex+Mono:wght@400;500&display=swap">'
+        '<link rel="preload" as="font" type="font/woff2" crossorigin '
+        'href="assets/fonts/cormorant-garamond-600-normal.woff2">'
+        '<link rel="preload" as="font" type="font/woff2" crossorigin '
+        'href="assets/fonts/spectral-400-normal.woff2">'
     )
     full_title = title if title.strip() == "The Invisible Gem" else (title + u" — The Invisible Gem")
     return u"""<!doctype html>
@@ -198,8 +197,8 @@ HOME_BODY = u"""
       <div data-reveal>
         <p class="hero__kicker">Università Iuav di Venezia · MA Architecture Thesis 2022–23</p>
         <h1>The Invisible Gem</h1>
-        <p class="hero__sub">A reflected sundial painted in 1673 across a hundred square metres
-        of a Grenoble stairwell — and the survey that makes its hidden geometry legible again.</p>
+        <p class="hero__sub">A reflected sundial painted across a Grenoble stairwell in 1673,
+        and the survey that makes its hidden geometry legible again.</p>
         <div class="hero__meta">
           <b>Object</b> &nbsp; Horloge Solaire du Lycée Stendhal, Grenoble (FR)<br>
           <b>Author of the dial</b> &nbsp; Jesuit Father Jean Bonfa (1638–1724), with his students<br>
@@ -335,8 +334,6 @@ visitor can grasp what Bonfa built.</p>
                 "bleed"),
 )
 rail = u"""
-<p class="rail__chap">Preface · Introduction</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Epigraph</b>&ldquo;An inch of time on the sundial is worth more than a foot of jade.&rdquo;</p>
 <p class="rail__note"><b>Access</b>Last Saturday of the month, by reservation with Grenoble Tourisme.</p>
 <p class="rail__note"><b>Restorations</b>1755 · 1855 · 1900 · 1918 — no record of which parts.</p>
@@ -393,8 +390,6 @@ what remained.</p>
         "encyclopaedia of light and shadow."),
 )
 rail = u"""
-<p class="rail__chap">Chapter I · 1</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Gnomon</b>The shadow-casting element; also, the one who &ldquo;knows how to judge&rdquo;.</p>
 <p class="rail__note"><b>Temporal hours</b>Daylight split into 12 regardless of season — unequal hour lengths.</p>
 <p class="rail__note"><b>Two origins</b>Babylonian hours from sunrise; Italic hours from sunset.</p>
@@ -462,8 +457,6 @@ which raises the unresolved question of whether Bonfa made both.</p>
         "symmetrically about the meridian plane."),
 )
 rail = u"""
-<p class="rail__chap">Chapter I · 2</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>15° = 1 hour</b>The Sun's 360° in 24 h sets the spacing of the meridians.</p>
 <p class="rail__note"><b>Best accuracy</b>≈ 1 minute, if perfectly placed.</p>
 <p class="rail__note"><b>Actinobolismus</b>Kircher's word for &ldquo;ray-throwing&rdquo; — the reflected image, flipped left-for-right and upside down.</p>
@@ -570,8 +563,6 @@ Babylonian hour systems, and finally the astrological houses aligned on the nort
         "mobile</em>, the tools that traced each line system."),
 )
 rail = u"""
-<p class="rail__chap">Chapter I · 3–4</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>1635</b>Kircher, <em>Primitiae gnomonicae catoptricae</em>.</p>
 <p class="rail__note"><b>1648</b>Maignan, <em>Perspectiva horaria</em> — one edition only.</p>
 <p class="rail__note"><b>1687</b>Pardiès, <em>Deux machines propres à faire les quadrans</em>.</p>
@@ -640,8 +631,6 @@ street &mdash; how many more wait in Europe's thousands of towns?</p>
         "the model of the dome. By Ho Trong Nhan.", "bleed"),
 )
 rail = u"""
-<p class="rail__chap">Chapter I · 5</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Palazzo Spada</b>Maignan, 1644 · latitude 41.9028° N · quartic curves on a barrel vault.</p>
 <p class="rail__note"><b>San Cristo, Brescia</b>Author unknown · latitude 45.5416° N · restored 2002.</p>
 <hr class="rail__hr">
@@ -726,8 +715,6 @@ a half centuries after its creation.&rdquo;</p>
         "<b>Fig. 2.7</b> The bright spot on the steps: the &ldquo;hand&rdquo; of the whole instrument."),
 )
 rail = u"""
-<p class="rail__chap">Chapter II · 1–2</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Jean Bonfa</b>1638, Nîmes — 1724. SJ from 1654. Painted the dial 1672–74.</p>
 <p class="rail__note"><b>Grenoble</b>45.1885° N · 5.7245° E</p>
 <p class="rail__note"><b>Seasons on the ceiling</b>AESTAS · AUTUMNUS · HIBERNUM · VER</p>
@@ -803,8 +790,6 @@ the <a href="digital-model.html">interactive model</a>.</p>
         "<b>Fig. 2.16</b> Enlarged plan of the reflected-sundial staircase, 1:50, from the merged survey."),
 )
 rail = u"""
-<p class="rail__chap">Chapter II · 3</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Time budget</b>≈ 1 hour on site, one Saturday a month.</p>
 <p class="rail__note"><b>Photos</b>309 · ≈ 60 % overlap · 10 panoramas.</p>
 <p class="rail__note"><b>Dense cloud</b>104 406 819 points.</p>
@@ -899,8 +884,6 @@ unproven, that Bonfa made both dials.</p>
         "<b>Fig. 2.30</b> The full network of time-system lines, rebuilt on the survey model.", "bleed"),
 )
 rail = u"""
-<p class="rail__chap">Chapter II · 4</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Seven tables</b>painted in fresco, working as calculators for time and the Moon.</p>
 <p class="rail__note"><b>Epact of 1984</b>27 — the year former pupils re-surveyed the room.</p>
 <p class="rail__note"><b>HOROLOG&rsquo; NOVU</b>Bonfa's own invention: Moon from Sun, Sun from Moon.</p>
@@ -990,8 +973,6 @@ of 2 p.m. on the second flight. J. de Rey Pailhade tabulated the houses against 
     ], 3),
 )
 rail = u"""
-<p class="rail__chap">Chapter II · 5</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>&phi; = 45.1885°</b>Grenoble's latitude sets the tilt of every axis and plane.</p>
 <p class="rail__note"><b>15°</b>step for hour planes · <b>30°</b> for the celestial houses.</p>
 <p class="rail__note"><b>&plusmn;23°27&prime;</b>the solstice declinations that bound the year's light spot.</p>
@@ -1047,8 +1028,6 @@ handed back.</p>
         "state the ideal geometry is checked against.", "bleed"),
 )
 rail = u"""
-<p class="rail__chap">Chapter II · 6</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>As-found</b>104 M-point photogrammetric mesh.</p>
 <p class="rail__note"><b>As-intended</b>ideal celestial sphere at &phi; = 45.1885°.</p>
 <p class="rail__note"><b>Result</b>close agreement; gaps only where the light never reaches the ceiling.</p>
@@ -1117,8 +1096,6 @@ only gets one Saturday a month.</p>
         "<b>Fig. 2.15</b> The room's surfaces unfolded from the mesh — the basis of the interactive model."),
 )
 rail = u"""
-<p class="rail__chap">Chapter III</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Model</b>&ldquo;The Invisible Gem of Horloge Solaire — Stendhal&rdquo; on Sketchfab.</p>
 <p class="rail__note"><b>On site</b>reachable by QR code on the staircase.</p>
 <p class="rail__note"><b>Contact</b>portfolio.hotrongnhan.org</p>
@@ -1181,8 +1158,6 @@ terms; &ldquo;do not track&rdquo; is set on the player.</p>
 <p data-reveal>For more: <a href="https://portfolio.hotrongnhan.org">portfolio.hotrongnhan.org</a>.</p>
 """.format(sfurl=SF_URL)
 rail = u"""
-<p class="rail__chap">Apparatus</p>
-<hr class="rail__hr">
 <p class="rail__note"><b>Alongside this site</b><span class="tag">/images</span> — 471 figures + manifest<br>
 <span class="tag">/text</span> — full extracted text</p>
 <p class="rail__note"><b>Model</b>Sketchfab · hotrongnhan.arch</p>

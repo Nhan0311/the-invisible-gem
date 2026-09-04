@@ -224,6 +224,28 @@ function init() {
     const t = sf.n.dot(sf.O.clone().sub(from)) / den;
     return t > 0 ? from.clone().addScaledVector(dir, t) : null;
   }
+  // far point where the ray  p + t*dir  (t >= 0) leaves the face rectangle
+  function clipRay(p, dir, sf) {
+    const pu = p.clone().sub(sf.O).dot(sf.u), pv = p.clone().sub(sf.O).dot(sf.v);
+    const du = dir.dot(sf.u), dv = dir.dot(sf.v);
+    let tmax = 1e9;
+    for (const [pc, dc, R] of [[pu, du, sf.ru], [pv, dv, sf.rv]]) {
+      if (Math.abs(dc) < 1e-9) { if (pc < -R || pc > R) return null; continue; }
+      const t1 = (-R - pc) / dc, t2 = (R - pc) / dc;
+      tmax = Math.min(tmax, Math.max(t1, t2));
+    }
+    return tmax <= 1e-4 ? null : p.clone().addScaledVector(dir, tmax);
+  }
+  // shadow of the style tip at hour H, on surface sf, trying declinations so the sun is up
+  function shadowHit(phi, H, sf, nod) {
+    for (const dd of [0, (H < 0 ? 22 : -22) * D2R, (H < 0 ? -22 : 22) * D2R]) {
+      const sd = sunDir(phi, dd, H);
+      if (sd.y <= 0.03) continue;
+      const hit = rayToSurface(nod, sd.clone().negate(), sf);
+      if (hit) return hit;
+    }
+    return null;
+  }
   function faceOutline(sf) {
     const c = [
       sf.O.clone().addScaledVector(sf.u, -sf.ru).addScaledVector(sf.v, -sf.rv),
@@ -258,20 +280,29 @@ function init() {
 
     const planeFor = (n) => reflected ? reflectV(n, MIRROR_N) : n;   // mirror the plane for a catoptric dial
     const originFor = () => reflected ? M : A;
+    const nodTip = A.clone().addScaledVector(P, 1.15);
 
-    // French / astronomical hours — 15deg
+    // French / astronomical hours — planes about P at 15deg.
+    // On a real dial these are RAYS from the sub-style, only on the shadow (anti-sun) side.
     if (S.show.french) {
-      for (let k = -7; k <= 8; k++) {
-        const hn = planeFor(hourNormal(k * 15 * D2R, Eq0, EqE));
-        for (const sf of targets) {
-          const seg = planeXSurface(hn, originFor(), sf);
-          if (!seg) continue;
-          gLines.add(lineSeg(seg[0], seg[1], C.french, 0.8));
-          if (sf === targets[0]) {
-            const hr = ((k + 12) % 24 + 24) % 24;
-            hourLabels.push(labelAt(seg[1], String(hr === 0 ? 24 : hr), "lab__lbl--fr"));
+      for (let k = -8; k <= 8; k++) {
+        const H = k * 15 * D2R;
+        if (reflected) {
+          const hn = reflectV(hourNormal(H, Eq0, EqE), MIRROR_N);
+          for (const sf of targets) {
+            const seg = planeXSurface(hn, M, sf);
+            if (seg) gLines.add(lineSeg(seg[0], seg[1], C.french, 0.8));
           }
+          continue;
         }
+        const sf = activeSurface();
+        const hit = shadowHit(phi, H, sf, nodTip);
+        if (!hit) continue;
+        const far = clipRay(A, hit.clone().sub(A).normalize(), sf);
+        if (!far) continue;
+        gLines.add(lineSeg(A, far, C.french, 0.82));
+        const hr = ((k + 12) % 24 + 24) % 24;
+        hourLabels.push(labelAt(far, String(hr === 0 ? 24 : hr), "lab__lbl--fr"));
       }
     }
     // Babylonian / Italian — the horizon plane rotated about P
@@ -285,30 +316,35 @@ function init() {
         }
       }
     }
-    // Twelve celestial houses — 30deg
+    // Twelve celestial houses — 30deg (rays from the sub-style, like the hours)
     if (S.show.houses) {
-      for (let k = 0; k < 12; k++) {
-        const hn = planeFor(hourNormal(k * 30 * D2R, Eq0, EqE));
-        for (const sf of targets) {
-          const seg = planeXSurface(hn, originFor(), sf);
-          if (seg) gLines.add(lineSeg(seg[0], seg[1], C.house, 0.5));
+      for (let k = -6; k <= 6; k++) {
+        const H = k * 30 * D2R;
+        if (reflected) {
+          const hn = reflectV(hourNormal(H, Eq0, EqE), MIRROR_N);
+          for (const sf of targets) { const seg = planeXSurface(hn, M, sf); if (seg) gLines.add(lineSeg(seg[0], seg[1], C.house, 0.5)); }
+          continue;
         }
+        const sf = activeSurface();
+        const hit = shadowHit(phi, H, sf, nodTip);
+        if (!hit) continue;
+        const far = clipRay(A, hit.clone().sub(A).normalize(), sf);
+        if (far) gLines.add(lineSeg(A, far, C.house, 0.5));
       }
     }
-    // Zodiac / month arcs
+    // Zodiac / month arcs — locus of the style-tip shadow over a day at fixed declination
     if (S.show.decl) {
       const decls = [-23.44, -20, -11.5, 0, 11.5, 20, 23.44];
       const sfArc = reflected ? faceList().ceiling : activeSurface();
-      const nod = A.clone().addScaledVector(P, 1.15);
       for (const dd of decls) {
         let pts = [];
         const flush = () => { if (pts.length > 1) gLines.add(polyLine(pts, C.decl, dd === 0 ? 0.9 : 0.6)); pts = []; };
         for (let hh = -180; hh <= 180; hh += 2) {
           const sd = sunDir(phi, dd * D2R, hh * D2R);
           if (sd.y <= 0.02) { flush(); continue; }
-          let hit;
-          if (reflected) hit = rayToSurface(M, reflectV(sd.clone().negate(), MIRROR_N).normalize(), sfArc);
-          else hit = rayToSurface(nod, sd, sfArc);
+          const hit = reflected
+            ? rayToSurface(M, reflectV(sd.clone().negate(), MIRROR_N).normalize(), sfArc)
+            : rayToSurface(nodTip, sd.clone().negate(), sfArc);
           if (hit && inRect(hit, sfArc)) pts.push(hit); else flush();
         }
         flush();
@@ -376,7 +412,7 @@ function init() {
     } else if (up) {
       const nod = A.clone().addScaledVector(P, 1.15);
       const sf = activeSurface();
-      const hit = rayToSurface(nod, sd, sf);
+      const hit = rayToSurface(nod, sd.clone().negate(), sf);   // shadow travels away from the sun
       if (hit) {
         gDynamic.add(lineSeg(A, hit, C.french, 0.3));
         gDynamic.add(lineSeg(nod, hit, C.french, 0.55));
@@ -426,11 +462,19 @@ function init() {
   let last = performance.now(), visible = true, dynDirty = true, camMoving = 0;
   window.__labDirty = () => { dynDirty = true; };
   controls.addEventListener("change", () => { camMoving = 4; });
-  new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; if (visible) { last = performance.now(); dynDirty = true; } }),
-    { threshold: 0.01 }).observe(stage);
+  new IntersectionObserver(es => es.forEach(e => {
+    visible = e.isIntersecting;
+    if (visible) { last = performance.now(); dynDirty = true; renderOnce(); }
+  }), { threshold: 0.01 }).observe(stage);
+  function renderOnce() {
+    controls.update();
+    dynamic(); dynDirty = false;
+    projectLabels();
+    renderer.render(scene, camera);
+  }
   function frame(now) {
     requestAnimationFrame(frame);
-    if (!visible || document.hidden) return;
+    if (!visible) return;                  // paused only while scrolled out of view
     const dt = Math.min(0.05, (now - last) / 1000); last = now;
     if (S.playing) {
       S.hour += dt * 1.4;
@@ -440,13 +484,16 @@ function init() {
       dynDirty = true;
     }
     const damping = controls.update();     // true while inertia is still settling
-    let work = dynDirty || camMoving > 0 || damping || S.playing;
+    const work = dynDirty || camMoving > 0 || damping || S.playing;
     if (dynDirty) { dynamic(); dynDirty = false; }
     if (work) projectLabels();
     if (camMoving > 0) camMoving--;
     if (work) renderer.render(scene, camera);   // idle: keep the last frame, let the GPU rest
   }
-  resize(); rebuild(); requestAnimationFrame(frame);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) { dynDirty = true; last = performance.now(); renderOnce(); }
+  });
+  resize(); rebuild(); renderOnce(); requestAnimationFrame(frame);
 
   // ================= controls =================
   const panel = {};

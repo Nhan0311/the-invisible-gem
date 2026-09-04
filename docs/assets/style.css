@@ -463,12 +463,42 @@ body.leaving { opacity: 0 !important; transition: opacity .26s ease !important; 
 
 /* ============================ the dial lab ============================ */
 .lab {
-  display: grid; grid-template-columns: 1fr 19rem; gap: 1rem;
+  display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: 1rem;
+  align-items: start;
   margin: 2rem 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
-  background: var(--paper);
+  background: var(--paper); -webkit-tap-highlight-color: transparent;
 }
-.lab__stage { position: relative; min-height: 30rem; background: #0d0d0f; }
-.lab__stage canvas { display: block; width: 100%; height: 100%; }
+/* break the lab out of the reading column on wider screens */
+@media (min-width: 1180px) {
+  .lab {
+    width: 74rem; max-width: calc(100vw - 3rem);
+    margin-left: calc(-1 * (var(--rail) + clamp(1.6rem, 5vw, 4rem)));
+  }
+}
+.lab__stage {
+  position: relative; height: clamp(28rem, 72vh, 46rem); background: #0d0d0f;
+}
+.lab__stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.lab__fs {
+  position: absolute; right: 0; top: 0; margin: .55rem;
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase;
+  color: #d9d2c2; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.18);
+  padding: .34rem .6rem; border-radius: 999px; cursor: pointer;
+}
+.lab__fs:hover { border-color: var(--gilt-bright); color: var(--gilt-bright); }
+
+/* full-screen: the lab fills the viewport, stage grows, panel scrolls beside it */
+.lab--fs {
+  position: fixed; inset: 0; z-index: 200; margin: 0; border-radius: 0;
+  grid-template-columns: minmax(0, 1fr) 20rem; background: var(--ground);
+}
+.lab--fs .lab__stage { min-height: 100vh; height: 100vh; }
+.lab--fs .lab__panel { max-height: 100vh; overflow-y: auto; }
+@media (max-width: 760px) {
+  .lab--fs { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .lab--fs .lab__stage { min-height: 62vh; height: 62vh; }
+  .lab--fs .lab__panel { max-height: 38vh; }
+}
 .lab__hud {
   position: absolute; left: 0; bottom: 0; margin: .6rem; padding: .5rem .65rem;
   font-family: var(--mono); font-size: .68rem; line-height: 1.5; color: #d9d2c2;
@@ -489,6 +519,7 @@ body.leaving { opacity: 0 !important; transition: opacity .26s ease !important; 
   padding: 1rem; display: flex; flex-direction: column; gap: 1.1rem;
   background: var(--ground-2); border-left: 1px solid var(--line);
   font-family: var(--mono); font-size: .72rem;
+  max-height: clamp(28rem, 72vh, 46rem); overflow-y: auto;
 }
 .lab__panel fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
 .lab__panel legend {
@@ -523,6 +554,17 @@ body.leaving { opacity: 0 !important; transition: opacity .26s ease !important; 
 
 @media (max-width: 900px) {
   .lab { grid-template-columns: 1fr; }
-  .lab__stage { min-height: 24rem; }
-  .lab__panel { border-left: 0; border-top: 1px solid var(--line); }
+  .lab__stage { height: clamp(20rem, 58vh, 30rem); }
+  .lab__panel { border-left: 0; border-top: 1px solid var(--line); max-height: none; overflow: visible; }
+}
+@media (max-width: 560px) {
+  .lab__panel { padding: .85rem; gap: .95rem; font-size: .74rem; }
+  .lab__panel input[type=range] { height: 1.6rem; }
+  .lab__panel label { padding: .1rem 0; }
+  .lab__presets button, .lab__btn { padding: .48rem .7rem; font-size: .68rem; }
+  .lab__hud { font-size: .62rem; max-width: 78%; }
+  .lab__lbl { font-size: .6rem; }
+}
+@media (hover: none) {
+  .lab__presets button, .lab__btn { min-height: 2.2rem; }
 }

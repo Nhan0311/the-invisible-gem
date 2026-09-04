@@ -23,13 +23,15 @@ NAV = [
     ("time-systems.html",          "Chapter II · 5", "Five Ways to Tell the Time"),
     ("conclusion.html",            "Chapter II · 6", "The Ideal Sphere Meets the Scan"),
     ("digital-model.html",         "Chapter III",    "The Invisible Gem, Made Visible"),
+    ("dial-lab.html",              "Workshop",       "Build Your Own Dial"),
     ("references.html",            "Apparatus",      "Notes, Sources & Figures"),
 ]
 GROUPS = [
     (2, "Chapter I — From Gnomonic to Catoptric"),
     (6, "Chapter II — The Sundial at Grenoble"),
     (11, "Chapter III — A Digital Companion"),
-    (12, "Apparatus"),
+    (12, "Workshop"),
+    (13, "Apparatus"),
 ]
 
 def toc_html(current):
@@ -133,7 +135,7 @@ def pager(slug):
     out.append('</nav>')
     return "\n".join(out)
 
-def page(slug, chap, title, stand, rail, body, lead=True):
+def page(slug, chap, title, stand, rail, body, lead=True, head_extra=""):
     """standard interior page: masthead + rail + column"""
     lead_cls = ' class="lead"' if lead else ''
     inner = u"""
@@ -154,7 +156,7 @@ def page(slug, chap, title, stand, rail, body, lead=True):
   </article>
 </main>
 """.format(rail=rail, chap=chap, title=title, stand=stand, body=body, pager=pager(slug))
-    return shell(slug, title, chap, inner)
+    return shell(slug, title, chap, inner, head_extra=head_extra)
 
 # helper snippets -------------------------------------------------------------
 def fig(src, cap, cls=""):
@@ -1163,10 +1165,127 @@ rail = u"""
 <p class="rail__note"><b>Model</b>Sketchfab · hotrongnhan.arch</p>
 <p class="rail__note"><b>More</b>portfolio.hotrongnhan.org</p>
 """
+# ---- 12. DIAL LAB ---------------------------------------------------------
+_REF_B, _REF_RAIL = b, rail   # keep the references body/rail before reusing the names
+b = u"""
+<p class="lead" data-reveal>Chapter II rebuilt Father Bonfa's fresco by projecting an
+<em>ideal celestial sphere</em> at Grenoble's latitude onto the staircase. The construction
+is not special to Grenoble: it works for any latitude and any flat surface. Set the dial
+below and watch the hour lines fall exactly where the planes of light cut the plane.</p>
+
+<div class="lab" data-reveal>
+  <div class="lab__stage">
+    <canvas id="lab-canvas"></canvas>
+    <div class="lab__hud" id="lab-hud"></div>
+    <div class="lab__labels" id="lab-labels"></div>
+  </div>
+  <form class="lab__panel" id="lab-panel" onsubmit="return false">
+    <fieldset>
+      <legend>Latitude &phi;</legend>
+      <input type="range" name="lat" min="0" max="66.5" step="0.01" value="45.19"
+             aria-label="latitude in degrees">
+      <div class="lab__row"><span>0&deg; &rarr; polar circle</span><span class="out" data-out="lat">45.19&deg;</span></div>
+      <div class="lab__presets">
+        <button type="button" data-preset="45.19">Grenoble</button>
+        <button type="button" data-preset="41.90">Rome</button>
+        <button type="button" data-preset="45.54">Brescia</button>
+        <button type="button" data-preset="51.51">London</button>
+        <button type="button" data-preset="0">Equator</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Surface</legend>
+      <label><input type="radio" name="surface" value="horizontal" checked> Horizontal ground</label>
+      <label><input type="radio" name="surface" value="vertical"> Vertical south wall</label>
+      <label><input type="radio" name="surface" value="ceiling"> Reflected — mirror on a sill</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Line systems</legend>
+      <label><input type="checkbox" name="french" checked><span class="lab__sw" data-k="french"></span> French / astronomical hours</label>
+      <label><input type="checkbox" name="babylonian"><span class="lab__sw" data-k="babylonian"></span> Babylonian hours (from sunrise)</label>
+      <label><input type="checkbox" name="italian"><span class="lab__sw" data-k="italian"></span> Italian hours (from sunset)</label>
+      <label><input type="checkbox" name="decl" checked><span class="lab__sw" data-k="decl"></span> Zodiac / month arcs</label>
+      <label><input type="checkbox" name="houses"><span class="lab__sw" data-k="houses"></span> Twelve celestial houses</label>
+      <p class="lab__note">Babylonian &amp; Italian hours share the same lines — the horizon
+      rotated about the pole; they differ only in where the count starts.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>The Sun</legend>
+      <div class="lab__row"><span>Day</span><span class="out" data-out="doy">21 Jun</span></div>
+      <input type="range" name="doy" min="1" max="365" step="1" value="172" aria-label="day of year">
+      <div class="lab__row"><span>Local time</span><span class="out" data-out="hour">12:00</span></div>
+      <input type="range" name="hour" min="3" max="21" step="0.05" value="12" aria-label="hour of day">
+      <button type="button" class="lab__btn" id="lab-play" aria-pressed="false">Play the day</button>
+      <label><input type="checkbox" name="sphere" checked> Show the celestial sphere</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Take it with you</legend>
+      <div class="lab__exports">
+        <button type="button" class="lab__btn" id="lab-obj">Download .OBJ</button>
+        <button type="button" class="lab__btn" id="lab-svg">Dial face .SVG</button>
+        <button type="button" class="lab__btn" id="lab-png">Save .PNG</button>
+      </div>
+      <button type="button" class="lab__btn" id="lab-reset">Reset to Grenoble</button>
+    </fieldset>
+  </form>
+</div>
+
+<h2><span class="sec">i</span>What you are looking at</h2>
+<p data-reveal>Everything is one construction, straight out of Chapter II &sect;5. The
+<strong>polar axis</strong> tilts &phi; above the northern horizon — the style of the dial
+points along it. Then:</p>
+<ul data-reveal>
+  <li><strong class="tag" style="color:var(--ink)">French hours</strong> — planes through the
+  polar axis, rotated in steps of 15&deg; from the noon meridian. Where each plane cuts the
+  surface is an hour line.</li>
+  <li><strong class="tag" style="color:var(--gilt)">Babylonian</strong> /
+  <strong class="tag">Italian hours</strong> — the horizon plane itself, rotated about the
+  polar axis in 15&deg; steps.</li>
+  <li><strong class="tag" style="color:var(--sun)">Zodiac / month arcs</strong> — cones about
+  the polar axis at declinations 0&deg;, &plusmn;11.5&deg;, &plusmn;20&deg;, &plusmn;23&deg;27&prime;;
+  the shadow of the style's tip runs along one of them for a fortnight at a time.</li>
+  <li><strong class="tag" style="color:var(--azure)">Celestial houses</strong> — the same as
+  French hours but stepped 30&deg;, one house per two solar hours.</li>
+</ul>
+<p data-reveal>Switch the surface to <em>Reflected</em> and a mirror on a window sill throws
+the spot onto the ceiling; the faint band is where that spot travels between the two solstices —
+the same figure the thesis draws for the Grenoble stair (Fig. 2.5, 2.40).</p>
+<p data-reveal>The exports are real geometry: <span class="tag">.OBJ</span> opens the line network
+in any 3-D tool, <span class="tag">.SVG</span> is the flat dial face for the horizontal or
+vertical surface, ready to scale and scribe.</p>
+
+<p class="lab__note" data-reveal>Built with three.js. Declination uses a first-order
+approximation and the equation of time is ignored, so read it as a construction aid, not an
+ephemeris.</p>
+""".strip()
+rail = u"""
+<p class="rail__note"><b>&phi; = 45.1885&deg;</b>Grenoble — the thesis's own dial. Try Rome (41.90&deg;) to see the lines splay.</p>
+<p class="rail__note"><b>15&deg;</b>one French hour · <b>30&deg;</b> one celestial house</p>
+<p class="rail__note"><b>&plusmn;23&deg;27&prime;</b>the solstice cones that bound the year</p>
+<hr class="rail__hr">
+<div class="rail__note"><b>Colour code</b>
+<div class="swatches">
+  <span class="sw" data-k="fr">French hours</span>
+  <span class="sw" data-k="bab">Babylonian</span>
+  <span class="sw" data-k="ita">Italian</span>
+  <span class="sw" data-k="dom">Celestial houses</span>
+  <span class="sw" data-k="dec">Zodiac / declination</span>
+</div></div>
+"""
+PAGES.append(("dial-lab.html", "Build Your Own Dial",
+    "Workshop",
+    "The same projection the thesis runs on Grenoble, as a tool: choose a latitude and a surface, and read the hour lines off the sphere.",
+    rail, b))
+
+# ---- 13. REFERENCES ------------------------------------------------------------
 PAGES.append(("references.html", "Notes, Sources & Figures",
     "Apparatus",
     "What was condensed, where the pictures come from, and the full apparatus behind the reconstruction.",
-    rail, b))
+    _REF_RAIL, _REF_B))
 
 # ============================================================ WRITE ==========
 def main():
@@ -1205,9 +1324,20 @@ for tup in PAGES:
     slug, title, chap, stand, rail, body = tup
     INTERIOR.append((slug, title, chap, stand, rail, body))
 
+HEAD_EXTRA = {
+    "dial-lab.html": (
+        '<script type="importmap">'
+        '{"imports":{'
+        '"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",'
+        '"three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"'
+        '}}</script>'
+        '<script type="module" src="assets/dial-lab.js"></script>'
+    ),
+}
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     write("index.html", shell("index.html", "The Invisible Gem", "Cover", HOME_BODY))
     for slug, title, chap, stand, rail, body in INTERIOR:
-        write(slug, page(slug, chap, title, stand, rail, body))
+        write(slug, page(slug, chap, title, stand, rail, body, head_extra=HEAD_EXTRA.get(slug, "")))
     print("done:", OUT)

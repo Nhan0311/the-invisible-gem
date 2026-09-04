@@ -22,8 +22,9 @@ HorlogeSolaireThesis/
 │  ├─ time-systems.html             Chapter II · 5   (the five spheres)
 │  ├─ conclusion.html               Chapter II · 6   (ideal vs. scan)
 │  ├─ digital-model.html            Chapter III      (the interactive model)
+│  ├─ dial-lab.html                 Workshop         (build a sundial in 3-D, three.js)
 │  ├─ references.html               notes, sources, figures, colophon
-│  └─ assets/  style.css · site.js · img/ (65 curated, web-sized figures)
+│  └─ assets/  style.css · site.js · dial-lab.js · fonts/ · img/ (65 curated, web-sized figures)
 │
 ├─ images/                  ← 471 figures extracted from the PDF, one file per
 │                             embedded image, named  p<page>_<index>_x<xref>.<ext>

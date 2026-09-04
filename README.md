@@ -1,7 +1,7 @@
 # The Invisible Gem — thesis archive & companion site
 
 Everything extracted from **`Ho Trong Nhan_294042_The Invisible Gem of Horloge
-Solaire Du Lycee Stendhal.pdf`** (237 MB), plus a multi-page website built from it.
+Solaire Du Lycee Stendhal.pdf`** (237 MB), plus a multi-page companion site built from it.
 
 Thesis: *The Invisible Gem of Horloge Solaire Du Lycée Stendhal, Grenoble (FR)* —
 Ho Trong Nhan (294042), MA Architecture, Università Iuav di Venezia, 2022–23.
@@ -9,7 +9,7 @@ Supervisor Agostino De Rosa · co-supervisor Alessio Bortot.
 
 ```
 HorlogeSolaireThesis/
-├─ website/                 ← the companion site (open website/index.html)
+├─ docs/                 ← the companion site (open docs/index.html)
 │  ├─ index.html            cover — hero + embedded Sketchfab 3-D model
 │  ├─ introduction.html
 │  ├─ sundial-history.html          Chapter I · 1
@@ -35,18 +35,18 @@ HorlogeSolaireThesis/
 │
 ├─ extract_images.py         PDF → images/            (PyMuPDF)
 ├─ contact_sheet.py          images/ → contact sheets (used during curation)
-├─ curate_images.py          images/ → website/assets/img/  (rename + resize ≤1600px)
-└─ build_site.py             regenerates every page in website/ from one script
+├─ curate_images.py          images/ → docs/assets/img/  (rename + resize ≤1600px)
+└─ build_site.py             regenerates every page in docs/ from one script
 ```
 
 ## Viewing the site
 
-Open `website/index.html` in a browser. A few things (the Sketchfab embed, the
+Open `docs/index.html` in a browser. A few things (the Sketchfab embed, the
 scroll-driven spin) need `http://`, not `file://`, so if the 3-D model doesn't
 appear, serve the folder:
 
 ```
-cd website
+cd docs
 python -m http.server 8000
 # then open http://127.0.0.1:8000/
 ```
@@ -78,9 +78,9 @@ it collapses to a still frame under `prefers-reduced-motion`.
 ### Sound
 
 A **Sound** toggle in the top bar turns on ambient audio **generated in the
-browser** (Web Audio API — no audio files): a slow A-drone with a fifth and an
-octave, a faint pendulum tick, and a soft bell as each new section scrolls into
-view. Off by default; the choice is remembered per browser (`localStorage`), and
+browser** (Web Audio API — no audio files): a slow passacaglia — a descending
+lament ground bass (A–G–F–E) under a broken-chord figure (i–VII–VI–V), over a
+quiet A-drone, with a soft bell as each new section scrolls into view. Off by default; the choice is remembered per browser (`localStorage`), and
 because browsers block auto-play it re-arms on your first click/scroll after a
 reload.
 

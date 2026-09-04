@@ -1,10 +1,10 @@
-"""Copy a curated, renamed subset of figures into website/assets/img and make
+"""Copy a curated, renamed subset of figures into docs/assets/img and make
 web-friendly sizes (max 1600 px on the long edge, quality 82)."""
 import os
 from PIL import Image, ImageOps
 
 SRC = r"C:\Users\NhanHo\HorlogeSolaireThesis\images"
-DST = r"C:\Users\NhanHo\HorlogeSolaireThesis\website\assets\img"
+DST = r"C:\Users\NhanHo\HorlogeSolaireThesis\docs\assets\img"
 os.makedirs(DST, exist_ok=True)
 
 # new-name : source-file  (+ optional rotation in degrees, ccw)

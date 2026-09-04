@@ -5,7 +5,7 @@ stays identical on every page; each page only supplies its own body."""
 
 import os, io, sys
 
-OUT = os.path.join(os.path.dirname(__file__), "website")
+OUT = os.path.join(os.path.dirname(__file__), "docs")
 SF_UID = "7981bc1901b14c1dae470e55c99c67b0"
 SF_URL = "https://sketchfab.com/3d-models/the-invisible-gem-of-horloge-solaire-stendhal-" + SF_UID
 

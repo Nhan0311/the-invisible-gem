@@ -180,14 +180,20 @@ function init() {
   }
   function activeSurface() {
     const F = faceList();
-    if (S.surface === "vertical") return F.south;
+    if (S.surface === "vertical") return F.north;   // the wall that faces south, toward the sun
     if (S.surface === "ceiling") return F.ceiling;
     return F.floor;
   }
   function anchor() {
-    if (S.surface === "vertical") return new THREE.Vector3(0, RM.yTop * 0.5, RM.zS - 0.02);
+    if (S.surface === "vertical") return new THREE.Vector3(0, RM.yTop * 0.82, RM.zN + 0.02);
     if (S.surface === "ceiling") return MIRROR();
     return new THREE.Vector3(0, 0, 0);
+  }
+  // the style tip: along the polar axis from the anchor. On a south-facing
+  // vertical dial the nodus sits on the sunny (room) side so the southern
+  // sun casts its shadow back onto the wall; elsewhere it is up the axis.
+  function styleTip(A, P) {
+    return A.clone().addScaledVector(P, S.surface === "vertical" ? -1.15 : 1.15);
   }
 
   // ---------- geometry: plane / surface intersection, clipped to the face rect ----------
@@ -273,14 +279,14 @@ function init() {
       gLines.add(dot(M, 0.05, C.faint));
     } else {
       gLines.add(faceOutline(activeSurface()));
-      const nod = A.clone().addScaledVector(P, 1.15);
+      const nod = styleTip(A, P);
       gLines.add(lineSeg(A, nod, C.french, 0.9));
       gLines.add(dot(nod, 0.045, C.french));
     }
 
     const planeFor = (n) => reflected ? reflectV(n, MIRROR_N) : n;   // mirror the plane for a catoptric dial
     const originFor = () => reflected ? M : A;
-    const nodTip = A.clone().addScaledVector(P, 1.15);
+    const nodTip = styleTip(A, P);
 
     // French / astronomical hours — planes about P at 15deg.
     // On a real dial these are RAYS from the sub-style, only on the shadow (anti-sun) side.
@@ -410,7 +416,7 @@ function init() {
         }
       }
     } else if (up) {
-      const nod = A.clone().addScaledVector(P, 1.15);
+      const nod = styleTip(A, P);
       const sf = activeSurface();
       const hit = rayToSurface(nod, sd.clone().negate(), sf);   // shadow travels away from the sun
       if (hit) {
@@ -431,7 +437,7 @@ function init() {
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   function fmtHM(h) { const t = ((h % 24) + 24) % 24, m = Math.round((t % 1) * 60), hh = Math.floor(t); return String(hh).padStart(2, "0") + ":" + String(m).padStart(2, "0"); }
   function monthOf(doy) { const d = new Date(2023, 0, 1); d.setDate(doy); return MONTHS[d.getMonth()] + " " + d.getDate(); }
-  const SURF = { horizontal: "floor", vertical: "south wall", ceiling: "reflected — ceiling & walls" };
+  const SURF = { horizontal: "floor", vertical: "south-facing wall", ceiling: "reflected — ceiling & walls" };
   function hudUpdate(sd, dcl, up) {
     if (!hud) return;
     const alt = sd ? Math.asin(THREE.MathUtils.clamp(sd.y, -1, 1)) / D2R : null;
@@ -460,7 +466,7 @@ function init() {
 
   // ---------- loop (paused when off-screen or tab hidden) ----------
   let last = performance.now(), visible = true, dynDirty = true, camMoving = 0;
-  window.__labDirty = () => { dynDirty = true; };
+  window.__labDirty = () => { dynDirty = true; if (visible) requestAnimationFrame(renderOnce); };
   controls.addEventListener("change", () => { camMoving = 4; });
   new IntersectionObserver(es => es.forEach(e => {
     visible = e.isIntersecting;

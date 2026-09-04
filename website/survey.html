@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surveying a Room of Light — The Invisible Gem</title>
+<meta name="description" content="A companion to the master's thesis on the 1673 reflected sundial of Father Jean Bonfa at Lycée Stendhal, Grenoble.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  document.documentElement.classList.add('js');
+  (function(){function r(){document.body&&document.body.classList.add('ready');}
+   requestAnimationFrame(function(){requestAnimationFrame(r);});
+   document.addEventListener('DOMContentLoaded',r);
+   setTimeout(r,1200);})();
+</script>
+
+</head>
+<body class="">
+<div class="beam" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="topbar__home" href="index.html">The Invisible Gem</a>
+  <span class="topbar__here"><b>Chapter II · 3</b> &nbsp;·&nbsp; Surveying a Room of Light</span>
+  <div class="topbar__actions">
+    <button class="topbar__sound" aria-pressed="false" title="Ambient sound — generated on your device">
+      <span class="topbar__sound-dot" aria-hidden="true"></span>Sound
+    </button>
+    <button class="topbar__toggle" aria-expanded="false" aria-controls="drawer">Contents</button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-open="false">
+  <div class="drawer__scrim"></div>
+  <nav class="drawer__panel" aria-label="Table of contents">
+    <div class="drawer__head"><span>Horloge Solaire du Lycée Stendhal</span>
+      <button class="drawer__close" aria-label="Close contents">×</button></div>
+    <ul class="toc">
+      <li><a href="index.html"><span class="toc__num">00</span><span>Home</span></a></li>
+<li><a href="introduction.html"><span class="toc__num">01</span><span>Introduction</span></a></li>
+<li class="toc__group">Chapter I — From Gnomonic to Catoptric</li>
+<li><a href="sundial-history.html"><span class="toc__num">02</span><span>A Brief History of the Sundial</span></a></li>
+<li><a href="gnomonic-to-catoptric.html"><span class="toc__num">03</span><span>From Gnomonic to Catoptric</span></a></li>
+<li><a href="treatises.html"><span class="toc__num">04</span><span>The 17th-Century Treatises</span></a></li>
+<li><a href="case-studies.html"><span class="toc__num">05</span><span>Two Reflected Dials in Rome & Brescia</span></a></li>
+<li class="toc__group">Chapter II — The Sundial at Grenoble</li>
+<li><a href="lycee-stendhal.html"><span class="toc__num">06</span><span>Lycée Stendhal & Father Bonfa</span></a></li>
+<li><a href="survey.html" aria-current="page"><span class="toc__num">07</span><span>Surveying a Room of Light</span></a></li>
+<li><a href="the-fresco-tables.html"><span class="toc__num">08</span><span>The Fresco’s Tables & Inscriptions</span></a></li>
+<li><a href="time-systems.html"><span class="toc__num">09</span><span>Five Ways to Tell the Time</span></a></li>
+<li><a href="conclusion.html"><span class="toc__num">10</span><span>The Ideal Sphere Meets the Scan</span></a></li>
+<li class="toc__group">Chapter III — A Digital Companion</li>
+<li><a href="digital-model.html"><span class="toc__num">11</span><span>The Invisible Gem, Made Visible</span></a></li>
+<li class="toc__group">Apparatus</li>
+<li><a href="references.html"><span class="toc__num">12</span><span>Notes, Sources & Figures</span></a></li>
+    </ul>
+  </nav>
+</div>
+
+
+<main class="wrap">
+  <article class="page">
+    <div class="rail"><div class="rail__inner">
+      
+<p class="rail__chap">Chapter II · 3</p>
+<hr class="rail__hr">
+<p class="rail__note"><b>Time budget</b>≈ 1 hour on site, one Saturday a month.</p>
+<p class="rail__note"><b>Photos</b>309 · ≈ 60 % overlap · 10 panoramas.</p>
+<p class="rail__note"><b>Dense cloud</b>104 406 819 points.</p>
+<p class="rail__note"><b>Compute</b>≈ 86 hours in Agisoft PhotoScan.</p>
+
+    </div></div>
+    <div class="column">
+      <header class="masthead" data-reveal>
+        <p class="eyebrow">Chapter II · 3</p>
+        <h1>Surveying a Room of Light</h1>
+        <p class="standfirst">One hour a month, no tripods in the way: tape, trilateration and 309 overlapping photographs turned into a hundred-million-point model.</p>
+      </header>
+      
+<p data-reveal>The room is open to the public only on the last Saturday of each month, and a visit lasts
+about an hour. Every method in this chapter is shaped by that limit: work fast, don't disturb the other
+visitors, and record every detail, because you may not get back.</p>
+
+<figure class="bleed" data-reveal><img src="assets/img/photogrammetry-axo.png" alt="Fig. 2.13 The photography scheme: three height bands per step, ≈ 60 % overlap, orthogonal frames up the ceiling axis. Diagram by Ho Trong Nhan." loading="lazy"><figcaption><b>Fig. 2.13</b> The photography scheme: three height bands per step, ≈ 60 % overlap, orthogonal frames up the ceiling axis. Diagram by Ho Trong Nhan.</figcaption></figure>
+
+<h2><span class="sec">i</span>Measuring the staircase</h2>
+<p data-reveal>Two independent methods were run in parallel and then overlaid.</p>
+<h3>Direct measurement</h3>
+<ul data-reveal>
+  <li>15 steps per flight plus one landing;</li>
+  <li>a typical step: riser 160 mm, tread depth 380 mm, tread width 2 050 mm;</li>
+  <li>tape runs from each finished floor level to the landing step — about 2.5 m per side — with an average
+  ceiling height of ~4 300 mm.</li>
+</ul>
+<h3>Trilateration</h3>
+<p data-reveal>Eight fixed stations were set — A, B, G, H at 2 500 mm above the floor; C, D, E, F level with
+the landing — and as many points as possible were &ldquo;spotted&rdquo; from them. Measuring was split
+left / right so that while the guide spoke on the east side, the survey worked from the west, and vice
+versa. Overlaying the tape model and the trilateration model produced one dimensioned file.</p>
+
+<figure  data-reveal><img src="assets/img/survey-stages.jpg" alt="Fig. 2.13 The stair split into work stages so the survey never blocked the guided tour." loading="lazy"><figcaption><b>Fig. 2.13</b> The stair split into work stages so the survey never blocked the guided tour.</figcaption></figure>
+
+<h2><span class="sec">ii</span>Photographing for photogrammetry</h2>
+<p data-reveal>The stair was divided into three zones — two flights and the landing — and shot from holding
+points at <strong>600, 1 200 and 1 800 mm</strong> above each step to build spherical panoramas, plus
+orthogonal frames straight up the central axis of the ceiling. In total <strong>309 photographs</strong>
+with about 60&nbsp;% overlap, yielding ten hemispherical panoramas.</p>
+
+<h2><span class="sec">iii</span>From photos to mesh</h2>
+<p data-reveal>The images went into Agisoft PhotoScan Professional, which aligned them on matching points and
+built the model in stages:</p>
+<div class="facts" data-reveal>
+  <dl>
+    <dt>Sparse cloud</dt><dd>571 393 coloured points</dd>
+    <dt>Dense cloud</dt><dd>104 406 819 points</dd>
+    <dt>Mesh</dt><dd>20 881 363 faces</dd>
+    <dt>Processing time</dt><dd>≈ 86 hours</dd>
+    <dt>Export</dt><dd>DXF · OBJ · MTL · 3DS</dd>
+  </dl>
+</div>
+
+<figure class="bleed" data-reveal><img src="assets/img/fresco-exploded.png" alt="Fig. 2.15 The photogrammetric mesh, unfolded: two ceilings, four walls and the landing laid out flat, textured from 309 photographs." loading="lazy"><figcaption><b>Fig. 2.15</b> The photogrammetric mesh, unfolded: two ceilings, four walls and the landing laid out flat, textured from 309 photographs.</figcaption></figure>
+
+<p data-reveal>The textured mesh — every painted line, crack and repair carried on it — is the
+<strong>&ldquo;as-found&rdquo; record</strong> of the room. In Chapter II&nbsp;§6 it is set against the
+&ldquo;as-intended&rdquo; geometry from the ideal celestial sphere; the same mesh, cleaned and lit, becomes
+the <a href="digital-model.html">interactive model</a>.</p>
+
+<figure  data-reveal><img src="assets/img/enlarged-plan.jpg" alt="Fig. 2.16 Enlarged plan of the reflected-sundial staircase, 1:50, from the merged survey." loading="lazy"><figcaption><b>Fig. 2.16</b> Enlarged plan of the reflected-sundial staircase, 1:50, from the merged survey.</figcaption></figure>
+
+      <nav class="pager" aria-label="Section navigation">
+<a href="lycee-stendhal.html"><span>← Chapter II · 1–2</span><b>Lycée Stendhal & Father Bonfa</b></a>
+<a href="the-fresco-tables.html"><span>Chapter II · 4 →</span><b>The Fresco’s Tables & Inscriptions</b></a>
+</nav>
+    </div>
+  </article>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">Tempori et Æternitati</span>
+    <span>Ho Trong Nhan · 294042 — MA Architecture, Università Iuav di Venezia · 2022–23</span>
+    <span><a href="references.html">Notes &amp; sources</a> · <a href="https://sketchfab.com/3d-models/the-invisible-gem-of-horloge-solaire-stendhal-7981bc1901b14c1dae470e55c99c67b0">3-D model</a></span>
+  </div>
+</footer>
+
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

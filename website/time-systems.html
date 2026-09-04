@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five Ways to Tell the Time — The Invisible Gem</title>
+<meta name="description" content="A companion to the master's thesis on the 1673 reflected sundial of Father Jean Bonfa at Lycée Stendhal, Grenoble.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  document.documentElement.classList.add('js');
+  (function(){function r(){document.body&&document.body.classList.add('ready');}
+   requestAnimationFrame(function(){requestAnimationFrame(r);});
+   document.addEventListener('DOMContentLoaded',r);
+   setTimeout(r,1200);})();
+</script>
+
+</head>
+<body class="">
+<div class="beam" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="topbar__home" href="index.html">The Invisible Gem</a>
+  <span class="topbar__here"><b>Chapter II · 5</b> &nbsp;·&nbsp; Five Ways to Tell the Time</span>
+  <div class="topbar__actions">
+    <button class="topbar__sound" aria-pressed="false" title="Ambient sound — generated on your device">
+      <span class="topbar__sound-dot" aria-hidden="true"></span>Sound
+    </button>
+    <button class="topbar__toggle" aria-expanded="false" aria-controls="drawer">Contents</button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-open="false">
+  <div class="drawer__scrim"></div>
+  <nav class="drawer__panel" aria-label="Table of contents">
+    <div class="drawer__head"><span>Horloge Solaire du Lycée Stendhal</span>
+      <button class="drawer__close" aria-label="Close contents">×</button></div>
+    <ul class="toc">
+      <li><a href="index.html"><span class="toc__num">00</span><span>Home</span></a></li>
+<li><a href="introduction.html"><span class="toc__num">01</span><span>Introduction</span></a></li>
+<li class="toc__group">Chapter I — From Gnomonic to Catoptric</li>
+<li><a href="sundial-history.html"><span class="toc__num">02</span><span>A Brief History of the Sundial</span></a></li>
+<li><a href="gnomonic-to-catoptric.html"><span class="toc__num">03</span><span>From Gnomonic to Catoptric</span></a></li>
+<li><a href="treatises.html"><span class="toc__num">04</span><span>The 17th-Century Treatises</span></a></li>
+<li><a href="case-studies.html"><span class="toc__num">05</span><span>Two Reflected Dials in Rome & Brescia</span></a></li>
+<li class="toc__group">Chapter II — The Sundial at Grenoble</li>
+<li><a href="lycee-stendhal.html"><span class="toc__num">06</span><span>Lycée Stendhal & Father Bonfa</span></a></li>
+<li><a href="survey.html"><span class="toc__num">07</span><span>Surveying a Room of Light</span></a></li>
+<li><a href="the-fresco-tables.html"><span class="toc__num">08</span><span>The Fresco’s Tables & Inscriptions</span></a></li>
+<li><a href="time-systems.html" aria-current="page"><span class="toc__num">09</span><span>Five Ways to Tell the Time</span></a></li>
+<li><a href="conclusion.html"><span class="toc__num">10</span><span>The Ideal Sphere Meets the Scan</span></a></li>
+<li class="toc__group">Chapter III — A Digital Companion</li>
+<li><a href="digital-model.html"><span class="toc__num">11</span><span>The Invisible Gem, Made Visible</span></a></li>
+<li class="toc__group">Apparatus</li>
+<li><a href="references.html"><span class="toc__num">12</span><span>Notes, Sources & Figures</span></a></li>
+    </ul>
+  </nav>
+</div>
+
+
+<main class="wrap">
+  <article class="page">
+    <div class="rail"><div class="rail__inner">
+      
+<p class="rail__chap">Chapter II · 5</p>
+<hr class="rail__hr">
+<p class="rail__note"><b>&phi; = 45.1885°</b>Grenoble's latitude sets the tilt of every axis and plane.</p>
+<p class="rail__note"><b>15°</b>step for hour planes · <b>30°</b> for the celestial houses.</p>
+<p class="rail__note"><b>&plusmn;23°27&prime;</b>the solstice declinations that bound the year's light spot.</p>
+<p class="rail__note"><b>F = (B + I) / 2</b>why red and yellow cross black where they do.</p>
+
+<hr class="rail__hr">
+<div class="rail__note"><b>Bonfa's colour code</b>
+<div class="swatches">
+  <span class="sw" data-k="fr">French hours — black</span>
+  <span class="sw" data-k="bab">Babylonian — yellow</span>
+  <span class="sw" data-k="ita">Italian / Roman — red</span>
+  <span class="sw" data-k="dom">Celestial houses — blue</span>
+  <span class="sw" data-k="dec">Sun's declination — ochre</span>
+</div></div>
+
+
+    </div></div>
+    <div class="column">
+      <header class="masthead" data-reveal>
+        <p class="eyebrow">Chapter II · 5</p>
+        <h1>Five Ways to Tell the Time</h1>
+        <p class="standfirst">Solar declination, French, Babylonian and Italian hours, and the twelve celestial houses — each rebuilt as an ideal sphere and intersected with the room.</p>
+      </header>
+      
+<p data-reveal>The analytic core of the thesis. For each system of lines on the fresco, an
+<strong>ideal celestial sphere at Grenoble's latitude (&phi; = 45.1885°)</strong> is built, the relevant
+family of planes or cones is generated, and its intersection with the model of the staircase is compared
+against what Bonfa actually painted. Five systems, five spheres.</p>
+
+<div class="spheres">
+  <figure class="sphere" data-k="dec" data-reveal><img src="assets/img/sphere-declination.jpg" alt="declination sphere" loading="lazy">
+    <figcaption><b>Declination</b> — cones of light, ochre / red-yellow lines.</figcaption></figure>
+  <figure class="sphere" data-k="fr" data-reveal><img src="assets/img/sphere-french.jpg" alt="French hours sphere" loading="lazy">
+    <figcaption><b>French hours</b> — planes at 15°, black lines.</figcaption></figure>
+  <figure class="sphere" data-k="bab" data-reveal><img src="assets/img/sphere-babylonian.jpg" alt="Babylonian hours sphere" loading="lazy">
+    <figcaption><b>Babylonian hours</b> — from the horizon, yellow lines.</figcaption></figure>
+  <figure class="sphere" data-k="ita" data-reveal><img src="assets/img/sphere-italian.jpg" alt="Italian hours sphere" loading="lazy">
+    <figcaption><b>Italian hours</b> — the Babylon dial flipped 180°, red lines.</figcaption></figure>
+  <figure class="sphere" data-k="dom" data-reveal><img src="assets/img/sphere-houses.jpg" alt="Celestial houses sphere" loading="lazy">
+    <figcaption><b>Celestial houses</b> — planes at 30°, blue lines.</figcaption></figure>
+</div>
+
+<h2><span class="sec">i</span>The zodiac &mdash; solar declination</h2>
+<p data-reveal>The Sun's declination runs from 0° at the equinoxes to &plusmn;23°27′ at the solstices, with
+intermediate stops near &plusmn;11.4° and &plusmn;20°. Each value is a <strong>cone of light</strong> sharing a
+common vertex and axis, tilted at &phi; to the north; intersected with the room it gives the month / zodiac
+lines. The summer-solstice curve (22 June, Cancer) lies closest to the window, the winter one (December,
+Capricorn) furthest; the bright spot spends the year between them. Around 20–22 March the spot runs a
+<em>straight</em> line through Aries; every other sign is a hyperbola. Each curve carries an allegorical
+figure.</p>
+
+<div class="grid3"><figure data-reveal><img src="assets/img/zodiac-leo.jpg" alt="Fig. 2.37 Leo — 23 July." loading="lazy"><figcaption><b>Fig. 2.37</b> Leo — 23 July.</figcaption></figure><figure data-reveal><img src="assets/img/zodiac-taurus.jpg" alt="Fig. 2.37 Taurus — 21 April." loading="lazy"><figcaption><b>Fig. 2.37</b> Taurus — 21 April.</figcaption></figure><figure data-reveal><img src="assets/img/zodiac-pisces.jpg" alt="Fig. 2.37 Pisces — 19 February." loading="lazy"><figcaption><b>Fig. 2.37</b> Pisces — 19 February.</figcaption></figure><figure data-reveal><img src="assets/img/zodiac-scorpio.jpg" alt="Fig. 2.37 Scorpio — 23 October." loading="lazy"><figcaption><b>Fig. 2.37</b> Scorpio — 23 October.</figcaption></figure></div>
+
+<h2><span class="sec">ii</span>French hours</h2>
+<p data-reveal>Civil time — 24 equal hours from midnight, used in France from about 1500. On the sphere the
+hour lines come from <strong>planes of light through the Sun and the polar axis</strong>, rotated about the
+pole in steps of 15° from the noon meridian. Painted &ldquo;mixto colore&rdquo; — dark grey / &ldquo;Paris
+mud&rdquo; — in Roman numerals: VIII–XII for the morning, I–IV for the afternoon, with half-hour lines
+between. Because of the reflection, the morning hours that would fall on an ordinary dial instead
+<strong>rise up the wall</strong>. The carefully drawn XII line is the Grenoble meridian.
+The semi-diurnal arc obeys <em>cos H&#8320; = &minus;tan &phi; &middot; tan &delta;</em>.</p>
+
+<h2><span class="sec">iii</span>Babylonian hours</h2>
+<p data-reveal>Equinoctial hours counted from sunrise; standard in Europe around 1300. The Babylonian hour is
+0:00 at sunrise, so the system is <strong>24 great circles starting from the horizon</strong>, generated by
+rotating the horizon plane about the polar axis in 15° steps (axis inclined 45.1885° to the horizon). Painted
+yellow, in Arabic numerals. Four dotted ceiling lines mark <em>INITIVM AVRORAE</em>, <em>OCCASVS SOLIS</em>,
+<em>ORTVS SOLIS</em> and <em>FINIS CREPVSCVLI</em> for set dates.</p>
+
+<h2><span class="sec">iv</span>Italian hours</h2>
+<p data-reveal>Equinoctial hours counted from the last sunset — <em>ROMANE RVBRAM</em>, red for Rome. Obtained
+by <strong>flipping the Babylonian dial 180°</strong> about the x-axis; the hour markers end at XXIV on the
+horizon. Painted red, symmetrical to the yellow set. Together the two make the dial's accuracy independent of
+day length: at the equator the count of Babylonian hours <em>n</em> equals Italian <em>n + 12</em>, and</p>
+<div class="facts" data-reveal>
+  <dl>
+    <dt>Sunrise</dt><dd>F &minus; B</dd>
+    <dt>Previous sunset</dt><dd>24 &minus; (I &minus; F)</dd>
+    <dt>Length of daylight</dt><dd>24 &minus; (I &minus; B)</dd>
+    <dt>Cross-check</dt><dd>F = (B + I) / 2</dd>
+  </dl>
+</div>
+<p data-reveal>where F, B, I are the French, Babylonian and Italian hours. If B and I are whole numbers, F is a
+whole number or a half — which is exactly where red and yellow lines cross a black one.</p>
+
+<h2><span class="sec">v</span>The twelve celestial houses</h2>
+<p data-reveal>Purely mathematical divisions of the sky, 30° each, one per two-hour interval of solar time.
+Generated like the French hours but with <strong>planes at 30°</strong> about the north axis, tilted 45.1885°
+to the horizon. Bonfa labelled them along the walls and ceiling — <em>DOMVS COELESTIS</em> from about 8 a.m.
+going up, XII between 9 and 10, XI from 10, X west of the meridian on the ceiling, IX to the east, VIII east
+of 2 p.m. on the second flight. J. de Rey Pailhade tabulated the houses against the hours: House I between
+4 and 6 a.m., House II between midnight and 2 a.m., and so on. Painted blue.</p>
+
+      <nav class="pager" aria-label="Section navigation">
+<a href="the-fresco-tables.html"><span>← Chapter II · 4</span><b>The Fresco’s Tables & Inscriptions</b></a>
+<a href="conclusion.html"><span>Chapter II · 6 →</span><b>The Ideal Sphere Meets the Scan</b></a>
+</nav>
+    </div>
+  </article>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">Tempori et Æternitati</span>
+    <span>Ho Trong Nhan · 294042 — MA Architecture, Università Iuav di Venezia · 2022–23</span>
+    <span><a href="references.html">Notes &amp; sources</a> · <a href="https://sketchfab.com/3d-models/the-invisible-gem-of-horloge-solaire-stendhal-7981bc1901b14c1dae470e55c99c67b0">3-D model</a></span>
+  </div>
+</footer>
+
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

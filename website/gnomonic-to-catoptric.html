@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Gnomonic to Catoptric — The Invisible Gem</title>
+<meta name="description" content="A companion to the master's thesis on the 1673 reflected sundial of Father Jean Bonfa at Lycée Stendhal, Grenoble.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  document.documentElement.classList.add('js');
+  (function(){function r(){document.body&&document.body.classList.add('ready');}
+   requestAnimationFrame(function(){requestAnimationFrame(r);});
+   document.addEventListener('DOMContentLoaded',r);
+   setTimeout(r,1200);})();
+</script>
+
+</head>
+<body class="">
+<div class="beam" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="topbar__home" href="index.html">The Invisible Gem</a>
+  <span class="topbar__here"><b>Chapter I · 2</b> &nbsp;·&nbsp; From Gnomonic to Catoptric</span>
+  <div class="topbar__actions">
+    <button class="topbar__sound" aria-pressed="false" title="Ambient sound — generated on your device">
+      <span class="topbar__sound-dot" aria-hidden="true"></span>Sound
+    </button>
+    <button class="topbar__toggle" aria-expanded="false" aria-controls="drawer">Contents</button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-open="false">
+  <div class="drawer__scrim"></div>
+  <nav class="drawer__panel" aria-label="Table of contents">
+    <div class="drawer__head"><span>Horloge Solaire du Lycée Stendhal</span>
+      <button class="drawer__close" aria-label="Close contents">×</button></div>
+    <ul class="toc">
+      <li><a href="index.html"><span class="toc__num">00</span><span>Home</span></a></li>
+<li><a href="introduction.html"><span class="toc__num">01</span><span>Introduction</span></a></li>
+<li class="toc__group">Chapter I — From Gnomonic to Catoptric</li>
+<li><a href="sundial-history.html"><span class="toc__num">02</span><span>A Brief History of the Sundial</span></a></li>
+<li><a href="gnomonic-to-catoptric.html" aria-current="page"><span class="toc__num">03</span><span>From Gnomonic to Catoptric</span></a></li>
+<li><a href="treatises.html"><span class="toc__num">04</span><span>The 17th-Century Treatises</span></a></li>
+<li><a href="case-studies.html"><span class="toc__num">05</span><span>Two Reflected Dials in Rome & Brescia</span></a></li>
+<li class="toc__group">Chapter II — The Sundial at Grenoble</li>
+<li><a href="lycee-stendhal.html"><span class="toc__num">06</span><span>Lycée Stendhal & Father Bonfa</span></a></li>
+<li><a href="survey.html"><span class="toc__num">07</span><span>Surveying a Room of Light</span></a></li>
+<li><a href="the-fresco-tables.html"><span class="toc__num">08</span><span>The Fresco’s Tables & Inscriptions</span></a></li>
+<li><a href="time-systems.html"><span class="toc__num">09</span><span>Five Ways to Tell the Time</span></a></li>
+<li><a href="conclusion.html"><span class="toc__num">10</span><span>The Ideal Sphere Meets the Scan</span></a></li>
+<li class="toc__group">Chapter III — A Digital Companion</li>
+<li><a href="digital-model.html"><span class="toc__num">11</span><span>The Invisible Gem, Made Visible</span></a></li>
+<li class="toc__group">Apparatus</li>
+<li><a href="references.html"><span class="toc__num">12</span><span>Notes, Sources & Figures</span></a></li>
+    </ul>
+  </nav>
+</div>
+
+
+<main class="wrap">
+  <article class="page">
+    <div class="rail"><div class="rail__inner">
+      
+<p class="rail__chap">Chapter I · 2</p>
+<hr class="rail__hr">
+<p class="rail__note"><b>15° = 1 hour</b>The Sun's 360° in 24 h sets the spacing of the meridians.</p>
+<p class="rail__note"><b>Best accuracy</b>≈ 1 minute, if perfectly placed.</p>
+<p class="rail__note"><b>Actinobolismus</b>Kircher's word for &ldquo;ray-throwing&rdquo; — the reflected image, flipped left-for-right and upside down.</p>
+
+<hr class="rail__hr">
+<div class="rail__note"><b>Bonfa's colour code</b>
+<div class="swatches">
+  <span class="sw" data-k="fr">French hours — black</span>
+  <span class="sw" data-k="bab">Babylonian — yellow</span>
+  <span class="sw" data-k="ita">Italian / Roman — red</span>
+  <span class="sw" data-k="dom">Celestial houses — blue</span>
+  <span class="sw" data-k="dec">Sun's declination — ochre</span>
+</div></div>
+
+
+    </div></div>
+    <div class="column">
+      <header class="masthead" data-reveal>
+        <p class="eyebrow">Chapter I · 2</p>
+        <h1>From Gnomonic to Catoptric</h1>
+        <p class="standfirst">Every dial face is a projection of the sky. Reverse the drawing, add a mirror, and the Sun can tell the time indoors.</p>
+      </header>
+      
+<p data-reveal>A sundial has two parts: a <em>dial plate</em> carrying hour lines, and a <em>style</em> whose
+shadow falls across them. The plate can be horizontal, vertical or inclined; its face is nothing more than
+the <strong>projection of the celestial sphere onto a surface</strong>. The meridians, 15° apart on the
+sphere because the Sun travels 360° in 24 hours, land as straight hour lines; the equator projects to the
+equinoctial line; the tropics to hyperbolic diurnal arcs. Even well made, a dial reads to about a minute
+at best — penumbra, the equation of time and refraction all work against it.</p>
+
+<figure class="bleed" data-reveal><img src="assets/img/projection-plane-3d.jpg" alt="Fig. 1.12 The celestial sphere projected onto a plane: meridians become hour lines, the equator the equinoctial line, the tropics hyperbolic arcs. Model by Ho Trong Nhan." loading="lazy"><figcaption><b>Fig. 1.12</b> The celestial sphere projected onto a plane: meridians become hour lines, the equator the equinoctial line, the tropics hyperbolic arcs. Model by Ho Trong Nhan.</figcaption></figure>
+
+<h2><span class="sec">i</span>A field guide to dials</h2>
+<p data-reveal>The thesis walks through the standard typology before arriving at the one that matters here:</p>
+<ul data-reveal>
+  <li><strong>Vertical dial</strong> — the common wall dial of houses, churches and monuments.</li>
+  <li><strong>Equinoctial ring</strong> — a meridian ring with latitude, hour and date scales; tells true
+  solar time anywhere in the world.</li>
+  <li><strong>Scaphe (cup) dial</strong> — hour lines on a concave hemisphere, the reverse of the celestial
+  sphere; a Babylonian inheritance.</li>
+  <li><strong>Cylindrical / altitude dial</strong> — reads time from the Sun's height; the shepherd's dial.</li>
+  <li><strong>Analemmatic dial</strong> — horizontal, with an elliptical ring of hour points and a gnomon
+  that must be moved along the meridian day by day.</li>
+  <li><strong>Camera-obscura meridian line</strong> — an indoor calendar that works only at local noon, giving
+  the date rather than the hour.</li>
+  <li><strong>Reflecting (catoptric) dial</strong> — the hour pattern reversed, drawn for a spot of light
+  thrown by a small mirror.</li>
+</ul>
+
+<div class="grid2"><figure data-reveal><img src="assets/img/ring-sundial-brass.jpg" alt="Fig. 1.18 An equinoctial ring dial — latitude, hours and dates on three scales." loading="lazy"><figcaption><b>Fig. 1.18</b> An equinoctial ring dial — latitude, hours and dates on three scales.</figcaption></figure><figure data-reveal><img src="assets/img/scaphe-gold.jpg" alt="Fig. 1.7 A gilt scaphe: hour lines on the inside of a hollow hemisphere." loading="lazy"><figcaption><b>Fig. 1.7</b> A gilt scaphe: hour lines on the inside of a hollow hemisphere.</figcaption></figure></div>
+
+<h2><span class="sec">ii</span>Turning the dial inside out</h2>
+<p data-reveal>The catoptric dial obeys the law of reflection. A small mirror on a window sill sends a ray
+indoors; as the Sun moves, the bright spot travels across the ceiling and walls, and the hour lines are
+drawn <strong>mirror-reversed</strong> to suit it. Kircher described the reflecting dial in <em>Ars Magna
+Lucis et Umbrae</em> and coined <em>Actinobolismus</em>, &ldquo;ray-throwing&rdquo;, for the effect. Once
+scholars saw that dials could be built for rooms the Sun never reaches directly — inner chambers, gallery
+vaults, domes — the reflected dial became its own branch of gnomonics.</p>
+
+<figure  data-reveal><img src="assets/img/kircher-reflected-engraving.jpg" alt="Fig. 1.25 The reflected dial in Kircher's engraving — every element of the room laid out symmetrically about the meridian plane." loading="lazy"><figcaption><b>Fig. 1.25</b> The reflected dial in Kircher's engraving — every element of the room laid out symmetrically about the meridian plane.</figcaption></figure>
+
+<p data-reveal>The list of known reflected ceiling dials is short; they were mathematical enough to be built
+for delight, elegance or display rather than daily use. Bonfa's Grenoble stair is the most cited of them.
+A near-twin survives 40 km west at <strong>Saint-Antoine-en-Vienne</strong>: 27 steps, about 25 m², black /
+red / yellow lines for normal, Italic and Babylonian hours &mdash; the same colour scheme as Grenoble,
+which raises the unresolved question of whether Bonfa made both.</p>
+
+      <nav class="pager" aria-label="Section navigation">
+<a href="sundial-history.html"><span>← Chapter I · 1</span><b>A Brief History of the Sundial</b></a>
+<a href="treatises.html"><span>Chapter I · 3–4 →</span><b>The 17th-Century Treatises</b></a>
+</nav>
+    </div>
+  </article>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">Tempori et Æternitati</span>
+    <span>Ho Trong Nhan · 294042 — MA Architecture, Università Iuav di Venezia · 2022–23</span>
+    <span><a href="references.html">Notes &amp; sources</a> · <a href="https://sketchfab.com/3d-models/the-invisible-gem-of-horloge-solaire-stendhal-7981bc1901b14c1dae470e55c99c67b0">3-D model</a></span>
+  </div>
+</footer>
+
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction — The Invisible Gem</title>
+<meta name="description" content="A companion to the master's thesis on the 1673 reflected sundial of Father Jean Bonfa at Lycée Stendhal, Grenoble.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  document.documentElement.classList.add('js');
+  (function(){function r(){document.body&&document.body.classList.add('ready');}
+   requestAnimationFrame(function(){requestAnimationFrame(r);});
+   document.addEventListener('DOMContentLoaded',r);
+   setTimeout(r,1200);})();
+</script>
+
+</head>
+<body class="">
+<div class="beam" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="topbar__home" href="index.html">The Invisible Gem</a>
+  <span class="topbar__here"><b>Preface</b> &nbsp;·&nbsp; Introduction</span>
+  <div class="topbar__actions">
+    <button class="topbar__sound" aria-pressed="false" title="Ambient sound — generated on your device">
+      <span class="topbar__sound-dot" aria-hidden="true"></span>Sound
+    </button>
+    <button class="topbar__toggle" aria-expanded="false" aria-controls="drawer">Contents</button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-open="false">
+  <div class="drawer__scrim"></div>
+  <nav class="drawer__panel" aria-label="Table of contents">
+    <div class="drawer__head"><span>Horloge Solaire du Lycée Stendhal</span>
+      <button class="drawer__close" aria-label="Close contents">×</button></div>
+    <ul class="toc">
+      <li><a href="index.html"><span class="toc__num">00</span><span>Home</span></a></li>
+<li><a href="introduction.html" aria-current="page"><span class="toc__num">01</span><span>Introduction</span></a></li>
+<li class="toc__group">Chapter I — From Gnomonic to Catoptric</li>
+<li><a href="sundial-history.html"><span class="toc__num">02</span><span>A Brief History of the Sundial</span></a></li>
+<li><a href="gnomonic-to-catoptric.html"><span class="toc__num">03</span><span>From Gnomonic to Catoptric</span></a></li>
+<li><a href="treatises.html"><span class="toc__num">04</span><span>The 17th-Century Treatises</span></a></li>
+<li><a href="case-studies.html"><span class="toc__num">05</span><span>Two Reflected Dials in Rome & Brescia</span></a></li>
+<li class="toc__group">Chapter II — The Sundial at Grenoble</li>
+<li><a href="lycee-stendhal.html"><span class="toc__num">06</span><span>Lycée Stendhal & Father Bonfa</span></a></li>
+<li><a href="survey.html"><span class="toc__num">07</span><span>Surveying a Room of Light</span></a></li>
+<li><a href="the-fresco-tables.html"><span class="toc__num">08</span><span>The Fresco’s Tables & Inscriptions</span></a></li>
+<li><a href="time-systems.html"><span class="toc__num">09</span><span>Five Ways to Tell the Time</span></a></li>
+<li><a href="conclusion.html"><span class="toc__num">10</span><span>The Ideal Sphere Meets the Scan</span></a></li>
+<li class="toc__group">Chapter III — A Digital Companion</li>
+<li><a href="digital-model.html"><span class="toc__num">11</span><span>The Invisible Gem, Made Visible</span></a></li>
+<li class="toc__group">Apparatus</li>
+<li><a href="references.html"><span class="toc__num">12</span><span>Notes, Sources & Figures</span></a></li>
+    </ul>
+  </nav>
+</div>
+
+
+<main class="wrap">
+  <article class="page">
+    <div class="rail"><div class="rail__inner">
+      
+<p class="rail__chap">Preface · Introduction</p>
+<hr class="rail__hr">
+<p class="rail__note"><b>Epigraph</b>&ldquo;An inch of time on the sundial is worth more than a foot of jade.&rdquo;</p>
+<p class="rail__note"><b>Access</b>Last Saturday of the month, by reservation with Grenoble Tourisme.</p>
+<p class="rail__note"><b>Restorations</b>1755 · 1855 · 1900 · 1918 — no record of which parts.</p>
+
+    </div></div>
+    <div class="column">
+      <header class="masthead" data-reveal>
+        <p class="eyebrow">Preface</p>
+        <h1>Introduction</h1>
+        <p class="standfirst">A hundred square metres of intersecting coloured lines, painted so a stairwell could keep time without a single moving part.</p>
+      </header>
+      
+<p data-reveal>At Stendhal High School, on the stairs of the main building, stands &ldquo;a magnificent
+gnomonic monument&rdquo;. The school is the oldest in Grenoble; its site belonged to the former
+<em>Collège des Jésuites</em>, and the Society of Jesus had been established in the city since
+January 1623 by authorisation of Louis XIII. Between 1672 and 1674 the mathematics professor
+<strong>Jean Bonfa</strong> used a large stone staircase on the south side of the college to paint a
+reflected sundial that is still visible today.</p>
+
+<figure class="bleed" data-reveal><img src="assets/img/axo-building-sun.png" alt="Fig. 2.4 Axonometric of Lycée Stendhal with the annual sun path; the reflected dial occupies the stair between Level 1 and Level 2. Drawing by Ho Trong Nhan." loading="lazy"><figcaption><b>Fig. 2.4</b> Axonometric of Lycée Stendhal with the annual sun path; the reflected dial occupies the stair between Level 1 and Level 2. Drawing by Ho Trong Nhan.</figcaption></figure>
+
+<p data-reveal>René R.&nbsp;J. Rohr called it plainly: &ldquo;the best known and often mentioned reflected
+ceiling sundial was painted in 1673 on the walls and ceiling of the stairwell in an ancient Jesuit
+convent in Grenoble.&rdquo; The art of making sundials — and reflected ones especially — flourished across
+the 17th and 18th centuries, when public buildings, churches and townhouses all carried mechanical
+clocks that still kept poor time and needed constant correction. The sundial remained the reference
+against which those clocks were set, and gnomonics was taught inside university mathematics.</p>
+
+<h2><span class="sec">i</span>Three influences, one room</h2>
+<p data-reveal>Three treatises circulated in Grenoble's library while Bonfa worked, and the thesis treats
+all three as probable sources: the <em>Primitiae gnomonicae catoptricae</em> (1635) of
+Athanasius Kircher; Emmanuel Maignan's <em>Perspectiva horaria</em> (Rome, 1648), the one directly practical
+work on reflected dials; and Ignace-Gaston Pardiès's notebook <em>Deux machines propres à faire les
+quadrans</em>. From Maignan in particular comes the method this thesis reuses — projecting an
+<em>ideal celestial sphere</em>, and its mirrored twin the <em>catoptric sphere</em>, onto the real
+surfaces of a room.</p>
+
+<h2><span class="sec">ii</span>Why it needs a companion</h2>
+<p data-reveal>Despite its modest scale the mechanism is dense: history, geography, astronomy, mathematics and
+theology are compressed into one fresco. Even with an experienced guide, a visitor cannot absorb it in a
+single pass — and access is limited to the last Saturday of each month, a constraint the COVID period only
+sharpened. The thesis therefore sets out to <strong>display every layer visually</strong>, so that an ordinary
+visitor can grasp what Bonfa built.</p>
+
+<p data-reveal>It proceeds in three parts, mirrored by this site:</p>
+<ol data-reveal>
+  <li><strong>History &amp; principle</strong> — the value of the Stendhal dial and the astronomy and
+  gnomonics behind reflected sundials.</li>
+  <li><strong>Survey &amp; representation</strong> — measuring the staircase, building a 3-D model by
+  photogrammetry, and analysing the hidden system by comparing the scan against ideal theory.</li>
+  <li><strong>Digital tool</strong> — turning the model into something that can teach and present the room
+  to visitors on the stairs.</li>
+</ol>
+
+<div class="inscription" data-reveal>
+  <div class="latin">Tempori et &AElig;ternitati</div>
+  <div class="gloss">&ldquo;For Time and for Eternity&rdquo; — in a ribboned cartouche on the landing,
+  beside the two mirrored windows.</div>
+</div>
+
+      <nav class="pager" aria-label="Section navigation">
+<a href="index.html"><span>← Cover</span><b>Home</b></a>
+<a href="sundial-history.html"><span>Chapter I · 1 →</span><b>A Brief History of the Sundial</b></a>
+</nav>
+    </div>
+  </article>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">Tempori et Æternitati</span>
+    <span>Ho Trong Nhan · 294042 — MA Architecture, Università Iuav di Venezia · 2022–23</span>
+    <span><a href="references.html">Notes &amp; sources</a> · <a href="https://sketchfab.com/3d-models/the-invisible-gem-of-horloge-solaire-stendhal-7981bc1901b14c1dae470e55c99c67b0">3-D model</a></span>
+  </div>
+</footer>
+
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

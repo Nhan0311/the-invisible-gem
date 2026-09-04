@@ -1,0 +1,10 @@
+* text=auto
+*.py text
+*.js text
+*.css text
+*.html text
+*.md text
+*.txt text
+*.jpg binary
+*.jpeg binary
+*.png binary

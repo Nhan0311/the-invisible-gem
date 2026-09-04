@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Invisible Gem</title>
+<meta name="description" content="A companion to the master's thesis on the 1673 reflected sundial of Father Jean Bonfa at Lycée Stendhal, Grenoble.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  document.documentElement.classList.add('js');
+  (function(){function r(){document.body&&document.body.classList.add('ready');}
+   requestAnimationFrame(function(){requestAnimationFrame(r);});
+   document.addEventListener('DOMContentLoaded',r);
+   setTimeout(r,1200);})();
+</script>
+
+</head>
+<body class="">
+<div class="beam" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="topbar__home" href="index.html">The Invisible Gem</a>
+  <span class="topbar__here"><b>Cover</b> &nbsp;·&nbsp; The Invisible Gem</span>
+  <div class="topbar__actions">
+    <button class="topbar__sound" aria-pressed="false" title="Ambient sound — generated on your device">
+      <span class="topbar__sound-dot" aria-hidden="true"></span>Sound
+    </button>
+    <button class="topbar__toggle" aria-expanded="false" aria-controls="drawer">Contents</button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-open="false">
+  <div class="drawer__scrim"></div>
+  <nav class="drawer__panel" aria-label="Table of contents">
+    <div class="drawer__head"><span>Horloge Solaire du Lycée Stendhal</span>
+      <button class="drawer__close" aria-label="Close contents">×</button></div>
+    <ul class="toc">
+      <li><a href="index.html" aria-current="page"><span class="toc__num">00</span><span>Home</span></a></li>
+<li><a href="introduction.html"><span class="toc__num">01</span><span>Introduction</span></a></li>
+<li class="toc__group">Chapter I — From Gnomonic to Catoptric</li>
+<li><a href="sundial-history.html"><span class="toc__num">02</span><span>A Brief History of the Sundial</span></a></li>
+<li><a href="gnomonic-to-catoptric.html"><span class="toc__num">03</span><span>From Gnomonic to Catoptric</span></a></li>
+<li><a href="treatises.html"><span class="toc__num">04</span><span>The 17th-Century Treatises</span></a></li>
+<li><a href="case-studies.html"><span class="toc__num">05</span><span>Two Reflected Dials in Rome & Brescia</span></a></li>
+<li class="toc__group">Chapter II — The Sundial at Grenoble</li>
+<li><a href="lycee-stendhal.html"><span class="toc__num">06</span><span>Lycée Stendhal & Father Bonfa</span></a></li>
+<li><a href="survey.html"><span class="toc__num">07</span><span>Surveying a Room of Light</span></a></li>
+<li><a href="the-fresco-tables.html"><span class="toc__num">08</span><span>The Fresco’s Tables & Inscriptions</span></a></li>
+<li><a href="time-systems.html"><span class="toc__num">09</span><span>Five Ways to Tell the Time</span></a></li>
+<li><a href="conclusion.html"><span class="toc__num">10</span><span>The Ideal Sphere Meets the Scan</span></a></li>
+<li class="toc__group">Chapter III — A Digital Companion</li>
+<li><a href="digital-model.html"><span class="toc__num">11</span><span>The Invisible Gem, Made Visible</span></a></li>
+<li class="toc__group">Apparatus</li>
+<li><a href="references.html"><span class="toc__num">12</span><span>Notes, Sources & Figures</span></a></li>
+    </ul>
+  </nav>
+</div>
+
+
+<main class="wrap">
+  <section class="hero">
+    <canvas class="hero__sky" aria-hidden="true"></canvas>
+    <div class="hero__grid">
+      <div data-reveal>
+        <p class="hero__kicker">Università Iuav di Venezia · MA Architecture Thesis 2022–23</p>
+        <h1>The Invisible Gem</h1>
+        <p class="hero__sub">A reflected sundial painted in 1673 across a hundred square metres
+        of a Grenoble stairwell — and the survey that makes its hidden geometry legible again.</p>
+        <div class="hero__meta">
+          <b>Object</b> &nbsp; Horloge Solaire du Lycée Stendhal, Grenoble (FR)<br>
+          <b>Author of the dial</b> &nbsp; Jesuit Father Jean Bonfa (1638–1724), with his students<br>
+          <b>Thesis</b> &nbsp; Ho Trong Nhan · 294042 &nbsp;|&nbsp; Supervisor Agostino De Rosa · Co-supervisor Alessio Bortot
+        </div>
+        <div class="btnrow">
+          <a class="btn btn--gilt" href="introduction.html">Begin reading</a>
+          <a class="btn" href="digital-model.html">Open the 3-D model</a>
+        </div>
+      </div>
+      <div data-reveal>
+        <div class="viewer" data-sketchfab="7981bc1901b14c1dae470e55c99c67b0">
+          <span class="viewer__tag">Drag to orbit · scroll the page to spin faster</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding:0">
+    <blockquote class="epigraph" data-reveal style="margin-top:3.4rem">
+      <p>&ldquo;An inch of time on the sundial is worth more than a foot of jade.&rdquo;</p>
+      <cite>— attributed to Confucius, epigraph to the thesis</cite>
+    </blockquote>
+
+    <div class="page">
+      <div class="rail"><div class="rail__inner">
+        <p class="rail__chap">The object in one minute</p>
+        <hr class="rail__hr">
+        <p>Read time by following one bright spot of reflected sunlight up the wall from
+        sunrise to noon, then down again to sunset.</p>
+        
+<hr class="rail__hr">
+<div class="rail__note"><b>Bonfa's colour code</b>
+<div class="swatches">
+  <span class="sw" data-k="fr">French hours — black</span>
+  <span class="sw" data-k="bab">Babylonian — yellow</span>
+  <span class="sw" data-k="ita">Italian / Roman — red</span>
+  <span class="sw" data-k="dom">Celestial houses — blue</span>
+  <span class="sw" data-k="dec">Sun's declination — ochre</span>
+</div></div>
+
+      </div></div>
+      <div class="column">
+        <p class="lead" data-reveal>On the main staircase of Lycée Stendhal, a mirror set on a window sill
+        throws a coin of sunlight onto the walls and ceiling. Father Jean Bonfa, professor of mathematics
+        at the Jesuit college, spent 1673 turning that moving coin into an instrument: a fresco of
+        intersecting coloured lines that reports the hour in five different systems at once, together with
+        the date, the season, the zodiac sign, the age of the Moon, and the feast days of the Church.</p>
+
+        <p data-reveal>Because reading it correctly is &ldquo;equivalent to a quiz&rdquo; — as the thesis puts it —
+        the dial has become almost illegible to ordinary visitors. This companion retraces the thesis in three
+        movements: the <a href="sundial-history.html">history and theory</a> that produced reflected dials in the
+        17th century; the <a href="survey.html">on-site survey and photogrammetric reconstruction</a> of the
+        Grenoble room; and the <a href="digital-model.html">digital model</a> built to hand its knowledge back
+        to a visitor on the stairs.</p>
+
+        <div class="facts" data-reveal>
+          <dl>
+            <dt>Date painted</dt><dd>1673 — restored 1755, 1855, 1900, 1918</dd>
+            <dt>Technique &amp; area</dt><dd>fresco, ≈ 100 m² of wall and ceiling</dd>
+            <dt>Location</dt><dd>Grenoble — 45.1885° N, 5.7245° E</dd>
+            <dt>Staircase</dt><dd>15 steps per flight + landing · riser 160 mm · tread 380 mm · width 2 050 mm</dd>
+            <dt>Stair axis</dt><dd>1° 52′ east of true north</dd>
+            <dt>Time systems shown</dt><dd>French · Babylonian · Italian · astrological houses · solar declination</dd>
+            <dt>Survey dates</dt><dd>26 February &amp; 26 March 2022</dd>
+            <dt>Photogrammetry</dt><dd>309 photos → 104 406 819 points → 20 881 363 faces · 86 h processing</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="contents" data-reveal>
+      <h2>Follow the light</h2>
+      <ol>
+        <li><a href="introduction.html"><span class="t">Introduction</span><span class="d">Preface</span></a></li>
+<li><a href="sundial-history.html"><span class="t">A Brief History of the Sundial</span><span class="d">Chapter I · 1</span></a></li>
+<li><a href="gnomonic-to-catoptric.html"><span class="t">From Gnomonic to Catoptric</span><span class="d">Chapter I · 2</span></a></li>
+<li><a href="treatises.html"><span class="t">The 17th-Century Treatises</span><span class="d">Chapter I · 3–4</span></a></li>
+<li><a href="case-studies.html"><span class="t">Two Reflected Dials in Rome & Brescia</span><span class="d">Chapter I · 5</span></a></li>
+<li><a href="lycee-stendhal.html"><span class="t">Lycée Stendhal & Father Bonfa</span><span class="d">Chapter II · 1–2</span></a></li>
+<li><a href="survey.html"><span class="t">Surveying a Room of Light</span><span class="d">Chapter II · 3</span></a></li>
+<li><a href="the-fresco-tables.html"><span class="t">The Fresco’s Tables & Inscriptions</span><span class="d">Chapter II · 4</span></a></li>
+<li><a href="time-systems.html"><span class="t">Five Ways to Tell the Time</span><span class="d">Chapter II · 5</span></a></li>
+<li><a href="conclusion.html"><span class="t">The Ideal Sphere Meets the Scan</span><span class="d">Chapter II · 6</span></a></li>
+<li><a href="digital-model.html"><span class="t">The Invisible Gem, Made Visible</span><span class="d">Chapter III</span></a></li>
+<li><a href="references.html"><span class="t">Notes, Sources & Figures</span><span class="d">Apparatus</span></a></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">Tempori et Æternitati</span>
+    <span>Ho Trong Nhan · 294042 — MA Architecture, Università Iuav di Venezia · 2022–23</span>
+    <span><a href="references.html">Notes &amp; sources</a> · <a href="https://sketchfab.com/3d-models/the-invisible-gem-of-horloge-solaire-stendhal-7981bc1901b14c1dae470e55c99c67b0">3-D model</a></span>
+  </div>
+</footer>
+
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
